@@ -1,0 +1,54 @@
+@startuml
+
+
+
+autonumber
+
+actor User
+
+activate User
+
+opt
+
+User -> ATM: tip on touch screen
+User <-- ATM: enter your card
+
+end
+
+User -> ATM: enter pin code
+
+activate ATM
+activate Bank
+ATM -> Bank: check pin
+ATM <-- Bank
+deactivate Bank
+deactivate ATM
+
+'activate ATM
+alt enter via prepared amount
+User -> ATM: select prepared amount
+else enter via num pad
+User -> ATM: enter amount on num pad
+else enter via select notes
+User -> ATM: select banknotes
+end
+
+activate ATM
+activate Bank
+ATM -> Bank: check amount available
+
+alt amount available
+ATM <-- Bank: not available message
+end
+deactivate Bank
+
+
+User <-- ATM: take your card
+User <-- ATM: take your money
+
+deactivate ATM
+
+
+
+
+@enduml

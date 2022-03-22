@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+
+activate User
+
+User -> BookingGUI: bucheFlug
+User <- BookingGUI: anzahl Passagiere?
+User -> BookingGUI: eingabe Anzahl
+BookingGUI -> BookingSystem: plaetze verfuegbar?
+
+alt ja
+BookingGUI <-- BookingSystem
+loop anzahlPassagiere
+
+User -> BookingGUI: passagierDaten eingeben
+
+opt sitzplatz wahl erwuenscht?
+User -> BookingGUI: sitzplatz aussuchen
+end
+
+BookingGUI -> BookingSystem: passagier speichern
+BookingSystem -> Ticket ** : save
+end
+BookingGUI <-- BookingSystem
+User <- BookingGUI : Flugbuchung OK
+
+else nein
+BookingGUI <-- BookingSystem
+User <- BookingGUI: Ausgabe nicht genug Plaetze vorhanden
+end
+
+
+@enduml
