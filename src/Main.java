@@ -21,5 +21,7 @@ public class Main {
         lena.print();
         Person julian_2= new Person(altin);
 
+
+
     }
 }
